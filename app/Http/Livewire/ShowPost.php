@@ -11,6 +11,7 @@ class ShowPost extends Component
     public $search;
     public $sort = 'id';
     public $direction = 'desc';
+    protected $listeners = ['render' => 'render']; 
     // ##### CAMBIAR NOMBRE A VARIABLE #####
     // public $titulo;
     // public function mount($title) {

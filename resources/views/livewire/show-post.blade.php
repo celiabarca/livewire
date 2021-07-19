@@ -9,14 +9,15 @@
         <!-- {{ $posts }}  -->
         <!-- component -->
         <x-table>
-            <div class="px-6 py-4">
-                <x-jet-input class="w-full" placeholder="Buscar" type="text" wire:model="search" />
+            <div class="px-6 py-4 flex items-center">
+                <x-jet-input class="flex-1 mr-4" placeholder="Buscar" type="text" wire:model="search" />
+                @livewire('create-post')
             </div>
             @if ($posts->count())
                 <table class="min-w-full">
                     <thead>
                         <tr class="bg-gray-200 text-gray-600 uppercase text-sm leading-normal">
-                            <th wire:click="order('id')" class="w-48 cursor-pointer py-3 px-6 text-left">ID
+                            <th wire:click="order('id')" class="w-24 cursor-pointer py-3 px-6 text-left">ID
                                 @if ($sort == 'id')
                                     @if ($direction == 'asc')
                                         <i class="fa fa-sort-alpha-up-alt float-right mt-1 ml-3"></i>
