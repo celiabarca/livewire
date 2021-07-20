@@ -44,5 +44,14 @@
 
         @livewireScripts
         <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        <script>
+            Livewire.on('alert', function(message){
+                Swal.fire(
+                    'Good job!',
+                    message,
+                    'success'
+                )
+            })
+        </script>
     </body>
 </html>
