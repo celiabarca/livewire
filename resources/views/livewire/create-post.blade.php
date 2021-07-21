@@ -26,9 +26,12 @@
                     <x-jet-input type="text" class="w-full" wire:model.defer="title"></x-jet-lable>
                     <x-jet-input-error for="title"/>
                 </div>
-                <div class="mt-4">
+                <div class="mt-4" wire:ignore>
                     <x-jet-label value="post"></x-jet-lable>
-                    <textarea wire:model.defer="content" rows="6" class="p-4 mt-4 w-full border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm;"></textarea>
+                    <textarea id="editor" 
+                              wire:model.defer="content" 
+                              rows="6" 
+                              class="p-4 mt-4 w-full border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm;"></textarea>
                     <x-jet-input-error for="content"/>
                 </div>
                 <div class="mt-4">
@@ -46,3 +49,18 @@
     </x-jet-dialog-modal>
 
 </div>
+@push('js')
+    <script src="https://cdn.ckeditor.com/ckeditor5/29.0.0/classic/ckeditor.js"></script>  
+    <script>
+        ClassicEditor
+            .create( document.querySelector( '#editor' ) )
+            .then(function (editor){
+                editor.model.document.on('change:data', ()=> {
+                    @this.set('content', editor.getData());
+                })
+            })
+            .catch( error => {
+                console.error( error );
+            } );
+    </script>
+@endpush
